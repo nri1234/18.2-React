@@ -1,0 +1,29 @@
+body {
+    margin: 0;
+}
+#app {
+    background-color: #e6f2ff;
+    display: box;
+    box-shadow: 3px 3px 6px black;
+    width: 80vw;
+    min-width: 320px;
+    margin: 10px auto;
+    padding: 10px;
+    li {
+        min-height: 400px;
+        padding: 5px 5px 5px;
+    }
+    h2 {
+        color: #0059b3;
+        font-weight: 800;
+        text-shadow: 2px 2px 4px gray;
+        margin-top: 5px;
+    }
+    img {
+        float: right;
+
+        max-width: 35vw;
+        max-height: 350px;
+        margin: 5px;
+    }
+}
