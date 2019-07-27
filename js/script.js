@@ -36,7 +36,6 @@ var moviesElements = movies.map(function(movie) {
     );
 });
 
-// ReactDOM elements encompasing moviesElements
 var element = React.createElement(
     "div",
     {},
@@ -44,5 +43,4 @@ var element = React.createElement(
     React.createElement("ol", {}, moviesElements)
 );
 
-// render DOM
 ReactDOM.render(element, document.getElementById("app"));
