@@ -26,11 +26,10 @@ var movies = [
 ];
 //Biorac pod uwagę, że tworzymy komponenty z tablicy: najpierw tablica
 var MoviesList = React.createClass({
-    // walidujemy propsa
+    // walidujemy propsa tablica
     propTypes: {
         moviesList: React.PropTypes.array.isRequired
     },
-    // render method
     //najpierw tworzymy cala tablice z id
     render: function() {
         var movieElement = this.props.moviesList.map(function(movie) {
@@ -46,11 +45,10 @@ var MoviesList = React.createClass({
 
 // Poszczegolne obiekty z tablicy, cala lista ktora bedziemy tworzyc
 var Movie = React.createClass({
-    // validate props - object needed
+    // object
     propTypes: {
         movie: React.PropTypes.object.isRequired
     },
-    // render method
     render: function() {
         return React.createElement(
             "li",
@@ -67,11 +65,9 @@ var Movie = React.createClass({
 
 // poszczegolne elementy listy
 var MovieImage = React.createClass({
-    // validate props - string path needed
     propTypes: {
         image: React.PropTypes.string.isRequired
     },
-    // render method
     render: function() {
         return React.createElement("img", { src: this.props.image });
     }
@@ -79,11 +75,9 @@ var MovieImage = React.createClass({
 
 // poszczegolne elementy listy
 var MovieTitle = React.createClass({
-    // validate props - string needed
     propTypes: {
         title: React.PropTypes.string.isRequired
     },
-    // render method
     render: function() {
         return React.createElement("h2", {}, "Tytuł: " + this.props.title);
     }
@@ -91,11 +85,9 @@ var MovieTitle = React.createClass({
 
 // poszczegolne elementy listy
 var MovieDescription = React.createClass({
-    // validate props - string needed
     propTypes: {
         description: React.PropTypes.string.isRequired
     },
-    // render method
     render: function() {
         return React.createElement("p", {}, "Opis: " + this.props.description);
     }
@@ -103,11 +95,9 @@ var MovieDescription = React.createClass({
 
 // poszczegolne elementy listy
 var MovieDate = React.createClass({
-    // validate props - string needed
     propTypes: {
         date: React.PropTypes.string.isRequired
     },
-    // render method
     render: function() {
         return React.createElement("p", {}, "Data wydania: " + this.props.date);
     }
@@ -116,9 +106,9 @@ var MovieDate = React.createClass({
 var element = React.createElement(
     "div",
     {},
-    React.createElement("h1", {}, "Lista filmów"),
-    React.createElement(MoviesList, { moviesList: movies })
+    React.createElement("h1", {}, "Lista filmów"), //element h1
+    React.createElement(MoviesList, { moviesList: movies }) //nasza zrenderowana tablica to tablic movies
 );
 
-// render DOM
+// renderujemy DOM
 ReactDOM.render(element, document.getElementById("app"));
