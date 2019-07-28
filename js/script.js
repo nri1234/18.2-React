@@ -24,23 +24,101 @@ var movies = [
         poster: "images/Zielona mila.jpg"
     }
 ];
+//Biorac pod uwagę, że tworzymy komponenty z tablicy: najpierw tablica
+var MoviesList = React.createClass({
+    // walidujemy propsa
+    propTypes: {
+        moviesList: React.PropTypes.array.isRequired
+    },
+    // render method
+    //najpierw tworzymy cala tablice z id
+    render: function() {
+        var movieElement = this.props.moviesList.map(function(movie) {
+            return React.createElement(Movie, {
+                key: movie.id,
+                movie: movie
+            });
+        });
 
-var moviesElements = movies.map(function(movie) {
-    return React.createElement(
-        "li",
-        { key: movie.id },
-        React.createElement("img", { src: movie.poster }),
-        React.createElement("h2", {}, "Tytuł: " + movie.title),
-        React.createElement("p", {}, "Opis: " + movie.desc),
-        React.createElement("p", {}, "Data wydania: " + movie.release)
-    );
+        return React.createElement("ol", {}, movieElement);
+    }
+});
+
+// Poszczegolne obiekty z tablicy, cala lista ktora bedziemy tworzyc
+var Movie = React.createClass({
+    // validate props - object needed
+    propTypes: {
+        movie: React.PropTypes.object.isRequired
+    },
+    // render method
+    render: function() {
+        return React.createElement(
+            "li",
+            {},
+            React.createElement(MovieImage, { image: this.props.movie.poster }),
+            React.createElement(MovieTitle, { title: this.props.movie.title }),
+            React.createElement(MovieDescription, {
+                description: this.props.movie.desc
+            }),
+            React.createElement(MovieDate, { date: this.props.movie.release })
+        );
+    }
+});
+
+// poszczegolne elementy listy
+var MovieImage = React.createClass({
+    // validate props - string path needed
+    propTypes: {
+        image: React.PropTypes.string.isRequired
+    },
+    // render method
+    render: function() {
+        return React.createElement("img", { src: this.props.image });
+    }
+});
+
+// poszczegolne elementy listy
+var MovieTitle = React.createClass({
+    // validate props - string needed
+    propTypes: {
+        title: React.PropTypes.string.isRequired
+    },
+    // render method
+    render: function() {
+        return React.createElement("h2", {}, "Tytuł: " + this.props.title);
+    }
+});
+
+// poszczegolne elementy listy
+var MovieDescription = React.createClass({
+    // validate props - string needed
+    propTypes: {
+        description: React.PropTypes.string.isRequired
+    },
+    // render method
+    render: function() {
+        return React.createElement("p", {}, "Opis: " + this.props.description);
+    }
+});
+
+// poszczegolne elementy listy
+var MovieDate = React.createClass({
+    // validate props - string needed
+    propTypes: {
+        date: React.PropTypes.string.isRequired
+    },
+    // render method
+    render: function() {
+        return React.createElement("p", {}, "Data wydania: " + this.props.date);
+    }
 });
 
 var element = React.createElement(
     "div",
     {},
     React.createElement("h1", {}, "Lista filmów"),
-    React.createElement("ol", {}, moviesElements)
+    React.createElement(MoviesList, { moviesList: movies })
 );
 
+// render DOM
 ReactDOM.render(element, document.getElementById("app"));
